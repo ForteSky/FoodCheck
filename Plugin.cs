@@ -1,12 +1,9 @@
-﻿using Dalamud.Game.ClientState;
-using Dalamud.Game.Command;
+﻿using Dalamud.Game.Command;
 using Dalamud.Game.Gui;
 using Dalamud.Interface.Windowing;
 using Dalamud.Logging;
 using Dalamud.Plugin;
-using FoodCheck.Attributes;
 using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Dalamud.Game;
@@ -28,12 +25,11 @@ namespace FoodCheck
         private IntPtr _countdownPtr;
         private readonly CountdownTimer _countdownTimer;
         private Hook<CountdownTimer> _countdownTimerHook;
-        private Stopwatch _stopwatch;
         
         [UnmanagedFunctionPointer(CallingConvention.ThisCall, CharSet = CharSet.Ansi)]
         private delegate IntPtr CountdownTimer(ulong p1);
 
-        public string Name => "Your Plugin's Display Name";
+        public string Name => "Food Check";
 
         public Plugin(
             DalamudPluginInterface pi,
@@ -47,7 +43,6 @@ namespace FoodCheck
             this.chat = chat;
             this._sig = sig;
             this._countdownTimer = CountdownTimerFunc;
-            this._stopwatch = new Stopwatch();
             HookCountdownPointer();
 
             // Get or create a configuration object
@@ -68,19 +63,17 @@ namespace FoodCheck
             // Load all of our commands
             this.commandManager = new PluginCommandManager<Plugin>(this, commands);
         }
-        
+
+        private float _start;
         private IntPtr CountdownTimerFunc(ulong value)
         {
-            if (!_stopwatch.IsRunning)
+            float countDownPointerValue = Marshal.PtrToStructure<float>((IntPtr)value + 0x2c);
+            if (Math.Floor(countDownPointerValue) - 2 <= _start)
             {
-                _stopwatch.Start();
+                _start = countDownPointerValue;
+                return _countdownTimerHook.Original(value);
             }
-            else
-            {
-                if(_stopwatch.ElapsedMilliseconds < 30000)
-                    return _countdownTimerHook.Original(value);
-                _stopwatch.Restart();
-            }
+            _start = countDownPointerValue;
             bool first = true;
             foreach (var partyMember in partyList)
             {
@@ -88,7 +81,7 @@ namespace FoodCheck
                 {
                     if (first)
                     {
-                        this.chat.Print($"FOOD CHECK!!!");
+                        this.chat.Print($"FOOD CHECK!");
                         first = false;
                     }
                     this.chat.Print($"{partyMember.Name}");
