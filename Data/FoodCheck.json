@@ -1,0 +1,11 @@
+{
+  "Author": "Forte Skyruler",
+  "Name": "Food Check",
+  "Punchline": "See who is missing food buff during pull timer.",
+  "Description": "More to come!",
+  "InternalName": "foodCheck",
+  "ApplicableVersion": "any",
+  "Tags": [
+    "foodcheck"
+  ]
+}

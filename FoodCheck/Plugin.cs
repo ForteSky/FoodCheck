@@ -6,7 +6,7 @@ using System.Reflection;
 using Dalamud.Game.ClientState.Party;
 using Dalamud.Game.Gui;
 
-namespace SamplePlugin
+namespace FoodCheck
 {
     public sealed class Plugin : IDalamudPlugin
     {
