@@ -27,6 +27,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Visible>false</Visible>
     </Content>
+    <Content Include="..\repo.json">
+      <Link>repo.json</Link>
+    </Content>
   </ItemGroup>
 
   <PropertyGroup>
