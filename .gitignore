@@ -1,3 +1,4 @@
+
 # Created by https://www.gitignore.io/api/git,rider,visualstudio
 # Edit at https://www.gitignore.io/?templates=git,rider,visualstudio
 
@@ -429,3 +430,4 @@ ASALocalRun/
 healthchecksdb
 
 # End of https://www.gitignore.io/api/git,rider,visualstudio
+
