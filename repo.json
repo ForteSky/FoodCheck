@@ -17,6 +17,6 @@
         "DownloadLinkInstall": "https://github.com/ForteSky/FoodCheck/releases/download/latest/latest.zip",
         "DownloadLinkTesting": "https://github.com/ForteSky/FoodCheck/releases/download/latest/latest.zip",
         "DownloadLinkUpdate": "https://github.com/ForteSky/FoodCheck/releases/download/latest/latest.zip",
-        "IconUrl": "https://raw.githubusercontent.com/ForteSky/FoodCheck/main/img/well_fed.png"
+        "IconUrl": "https://raw.githubusercontent.com/ForteSky/FoodCheck/main/img/icon.png"
     }
 ]
